@@ -8,14 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Leaves",
+"language": "GDScript",
+"path": "res://Items/Leaves/Leaves.gd"
+} ]
 _global_script_class_icons={
-
+"Leaves": ""
 }
 
 [application]
 
 config/name="Untitled Project"
+run/main_scene="res://Level/Level.tscn"
 config/icon="res://icon.png"
 
 [rendering]
