@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Leaves",
 "language": "GDScript",
 "path": "res://Items/Leaves/Leaves.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
-"Leaves": ""
+"Leaves": "",
+"Player": ""
 }
 
 [application]
