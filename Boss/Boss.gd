@@ -1,17 +1,17 @@
 extends KinematicBody2D
 class_name Boss
 
-var vel := 7000.0
+var vel := 400.0 * 60 
 var follow_player := false
 var player_ref: Player
 
-func _process(delta):
+func _physics_process(delta):
 	if follow_player:
 		follow(delta)
 
 func follow(delta: float):
 	var dir := (player_ref.global_position - self.global_position).normalized()
-	print(dir)
+	# print(dir)
 	move_and_slide(dir * vel * delta)
 	
 func _on_Area2D_body_entered(body):

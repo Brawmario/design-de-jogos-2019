@@ -8,7 +8,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta: float):
+func _physics_process(delta: float):
 	var velocity = Vector2()  # The player's movement vector.
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1
@@ -25,3 +25,5 @@ func _process(delta: float):
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("Items"):
 		print("Item in Range")
+	if area.has_method("interact"):
+		area.interact(self)
