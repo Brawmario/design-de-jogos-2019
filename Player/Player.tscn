@@ -37,9 +37,6 @@ script = ExtResource( 3 )
 margin_right = 100.0
 margin_bottom = 100.0
 texture = ExtResource( 4 )
-
-[node name="InteractTimeout" type="Timer" parent="."]
 [connection signal="inventory_update" from="." to="UI" method="_on_Player_inventory_update"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_exited"]
-[connection signal="timeout" from="InteractTimeout" to="." method="_on_InteractTimeout_timeout"]

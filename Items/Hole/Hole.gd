@@ -9,5 +9,6 @@ func interact(other):
 			leaves.monitorable = false
 			leaves.position = Vector2()
 			add_child(leaves)
+			player.inventory = null
 			return ItemEnums.Drop
 	pass

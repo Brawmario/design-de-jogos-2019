@@ -24,13 +24,12 @@ func _physics_process(delta: float):
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1 
+		velocity.y -= 1
 	velocity = velocity.normalized() * vel
 	move_and_slide(velocity)
-	
+
 	# Interact
-	if Input.is_action_pressed("interact") and not interact_cooldown and item and item.has_method("interact"):
-		start_cooldown()
+	if Input.is_action_just_pressed("interact") and item and item.has_method("interact"):
 		var item_ref = item
 		var interact_result = item_ref.interact(self)
 		match interact_result:
@@ -44,11 +43,6 @@ func _physics_process(delta: float):
 				print("Dropped Item")
 
 
-func start_cooldown():
-	interact_cooldown = true
-	interact_timeout.start(1)
-
-
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("Items"):
 		print("Item in Range")
@@ -59,7 +53,3 @@ func _on_InteractionArea_area_exited(area):
 	if area.is_in_group("Items"):
 		print("Item left Range")
 		item = null
-
-
-func _on_InteractTimeout_timeout():
-	interact_cooldown = false
