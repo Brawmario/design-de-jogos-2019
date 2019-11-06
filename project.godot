@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Banana",
+"language": "GDScript",
+"path": "res://Items/Banana/Banana.gd"
+}, {
+"base": "Area2D",
+"class": "BananaPeel",
+"language": "GDScript",
+"path": "res://BananaPeel.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Boss",
 "language": "GDScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
+"Banana": "",
+"BananaPeel": "",
 "Boss": "",
 "Hole": "",
 "ItemEnums": "",

@@ -14,5 +14,6 @@ func _ready():
 func interact(other):
 	var player := other as Player
 	if player:
+		if player.inventory:
+			return ItemEnums.Switch
 		return ItemEnums.Pickup
-	pass

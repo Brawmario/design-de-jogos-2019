@@ -29,18 +29,37 @@ func _physics_process(delta: float):
 	move_and_slide(velocity)
 
 	# Interact
-	if Input.is_action_just_pressed("interact") and item and item.has_method("interact"):
-		var item_ref = item
-		var interact_result = item_ref.interact(self)
-		match interact_result:
-			ItemEnums.Pickup:
-				item_ref.get_parent().remove_child(item_ref)
-				inventory = item_ref
-				emit_signal("inventory_update", item_ref)
-				print("Picked up Item")
-			ItemEnums.Drop:
-				emit_signal("inventory_update", null)
-				print("Dropped Item")
+	if Input.is_action_just_pressed("interact"):
+		if inventory is Banana:
+			var banana_peel = load("res://Items/BananaPeel/BananaPeel.tscn").instance()
+			banana_peel.position = self.position
+			self.get_parent().add_child(banana_peel)
+			self.inventory = null
+			emit_signal("inventory_update", null)
+		elif inventory is BananaPeel:
+			self.inventory.position = self.position
+			self.get_parent().add_child(self.inventory)
+			self.inventory = null
+			emit_signal("inventory_update", null)
+		if item and item.has_method("interact"):
+			var item_ref = item
+			var interact_result = item_ref.interact(self)
+			match interact_result:
+				ItemEnums.Pickup:
+					item_ref.get_parent().remove_child(item_ref)
+					inventory = item_ref
+					emit_signal("inventory_update", item_ref)
+					print("Picked up Item")
+				ItemEnums.Switch:
+					self.inventory.position = self.position
+					self.get_parent().add_child(self.inventory)
+					item_ref.get_parent().remove_child(item_ref)
+					inventory = item_ref
+					emit_signal("inventory_update", item_ref)
+					print("Switched items")
+				ItemEnums.Drop:
+					emit_signal("inventory_update", null)
+					print("Dropped Item")
 
 
 func _on_InteractionArea_area_entered(area):
