@@ -36,7 +36,6 @@ tracks/1/keys = {
 [node name="Hammer" type="Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -42,6 +42,7 @@ func _on_attackArea_body_entered(body):
 	var player := body as Player
 	if not player:
 		return
+	follow_player = true
 	attack_player = true
 
 func _on_attackArea_body_exited(body):
