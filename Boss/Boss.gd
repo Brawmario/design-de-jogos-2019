@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Boss
 
-var vel := 400.0 * 60 
+var vel := 300.0 * 60 
 var follow_player := false
 var player_ref: Player
 var attack_player := false
