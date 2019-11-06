@@ -2,6 +2,13 @@ extends KinematicBody2D
 class_name Player
 
 var vel: float = 500.0
+var item = null
+var interact_cooldown = false
+
+onready var interact_timeout = $InteractTimeout
+onready var inventory = null
+
+signal inventory_update(item)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +24,32 @@ func _physics_process(delta: float):
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1 
+		velocity.y -= 1
 	velocity = velocity.normalized() * vel
 	move_and_slide(velocity)
+
+	# Interact
+	if Input.is_action_just_pressed("interact") and item and item.has_method("interact"):
+		var item_ref = item
+		var interact_result = item_ref.interact(self)
+		match interact_result:
+			ItemEnums.Pickup:
+				item_ref.get_parent().remove_child(item_ref)
+				inventory = item_ref
+				emit_signal("inventory_update", item_ref)
+				print("Picked up Item")
+			ItemEnums.Drop:
+				emit_signal("inventory_update", null)
+				print("Dropped Item")
 
 
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("Items"):
 		print("Item in Range")
-	if area.has_method("interact"):
-		area.interact(self)
+		item = area
+
+
+func _on_InteractionArea_area_exited(area):
+	if area.is_in_group("Items"):
+		print("Item left Range")
+		item = null
