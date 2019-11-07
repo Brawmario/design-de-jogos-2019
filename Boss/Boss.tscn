@@ -75,6 +75,7 @@ texture = ExtResource( 4 )
 gravity_vec = Vector2( 10, 1 )
 
 [node name="followArea" type="Area2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="followArea"]
 position = Vector2( 24.7355, -0.716972 )
@@ -95,5 +96,6 @@ anims/upperArmorDestroy = SubResource( 4 )
 anims/lowerArmorAnimation = SubResource( 5 )
 [connection signal="body_entered" from="followArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="followArea" to="." method="_on_Area2D_body_exited"]
+[connection signal="area_shape_entered" from="attackArea" to="." method="_on_attackArea_area_shape_entered"]
 [connection signal="body_entered" from="attackArea" to="." method="_on_attackArea_body_entered"]
 [connection signal="body_exited" from="attackArea" to="." method="_on_attackArea_body_exited"]
