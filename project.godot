@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "BananaPeel",
 "language": "GDScript",
-"path": "res://BananaPeel.gd"
+"path": "res://Items/BananaPeel/BananaPeel.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Boss",

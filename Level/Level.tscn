@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss/Boss.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Items/Leaves/Leaves.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Items/Hole/Hole.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/Banana/Banana.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1000, 10 )
@@ -48,3 +49,6 @@ position = Vector2( 861.16, 1692.51 )
 
 [node name="Hole" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1017.38, 1107.53 )
+
+[node name="Banana" parent="." instance=ExtResource( 5 )]
+position = Vector2( 762.77, 1324.5 )
