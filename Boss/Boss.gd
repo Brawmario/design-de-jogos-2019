@@ -10,6 +10,8 @@ var attack_player := false
 var boss_trapped := false
 var boss_can_fall := true
 var boss_can_slide := true
+var boss_fell_heat := true
+var boss_heath : int = 5
 
 # Wait time for the trapped boos
 var time := Timer.new()
@@ -67,6 +69,11 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 	if not hole || hole.leaves_ref==null:
 		var banana := area as BananaPeel
 		if not banana:
+			var campfire := area as CampFire
+			if not campfire:
+				return
+			bossDropHelmet()
+			boss_fell_heat = false
 			return
 		print('escorregou na banana')
 		slideBananaBoss(area)
@@ -79,8 +86,8 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 	
 func trappBossHole(area):
 	if boss_can_fall:
+		boss_heath -= 1
 		boss_trapped = true
-		self.rotation 
 		self.global_position=area.global_position
 		self.add_child(time)
 		time.start()
@@ -90,8 +97,19 @@ func trappBossHole(area):
 
 func slideBananaBoss (area):
 	if boss_can_slide:
+		boss_heath -= 1
 		$rotatingAfterBanana.play("rotating")
 		$upperArmorAnimation.play("upperArmorDestroy")
 		var dir := (player_ref.global_position - self.global_position).normalized()
 		move_and_slide(dir * vel_chasing / 10)
 	
+func bossDropHelmet():
+	if boss_fell_heat:
+		boss_heath -= 1
+		boss_trapped = true
+		self.add_child(time)
+		time.wait_time = 3
+		time.start()
+		$Helmet/helmetAnimation.play('helmetMovement')
+		yield(time, 'timeout')
+		boss_trapped = false

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Boss/Boss.gd"
 }, {
 "base": "Area2D",
+"class": "CampFire",
+"language": "GDScript",
+"path": "res://Items/Fire/FireCamp.gd"
+}, {
+"base": "Area2D",
 "class": "Hole",
 "language": "GDScript",
 "path": "res://Items/Hole/Hole.gd"
@@ -48,6 +53,7 @@ _global_script_class_icons={
 "Banana": "",
 "BananaPeel": "",
 "Boss": "",
+"CampFire": "",
 "Hole": "",
 "ItemEnums": "",
 "Leaves": "",
