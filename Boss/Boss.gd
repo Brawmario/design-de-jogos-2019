@@ -87,4 +87,3 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 		$upperArmorAnimation.play("upperArmorDestroy")
 		yield( $upperArmorAnimation, "animation_finished" )
 		state=BossState.MoveRandom
-		
