@@ -8,6 +8,8 @@ var random_Waypoint:=Vector2(rand_range(0,2000), rand_range(0,2000))
 var player_ref: Player
 var attack_player := false
 var boss_trapped := false
+var boss_can_fall := true
+var boss_can_slide := true
 
 # Wait time for the trapped boos
 var time := Timer.new()
@@ -63,13 +65,33 @@ func _on_attackArea_body_exited(body):
 func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 	var hole := area as Hole
 	if not hole || hole.leaves_ref==null:
-		return 
+		var banana := area as BananaPeel
+		if not banana:
+			return
+		print('escorregou na banana')
+		slideBananaBoss(area)
+		boss_can_slide = false
+		return		
+	trappBossHole(area)
+	boss_can_fall = false
 	# Boss percive the hole
-	boss_trapped = true
-	self.global_position=area.global_position
-	self.add_child(time)
-	time.start()
-	$lowerArmorAnimation.play("lowerArmorAnimation")
-	yield(time, 'timeout')
-	boss_trapped = false
+
+	
+func trappBossHole(area):
+	if boss_can_fall:
+		boss_trapped = true
+		self.rotation 
+		self.global_position=area.global_position
+		self.add_child(time)
+		time.start()
+		$lowerArmorAnimation.play("lowerArmorAnimation")
+		yield(time, 'timeout')
+		boss_trapped = false
+
+func slideBananaBoss (area):
+	if boss_can_slide:
+		$rotatingAfterBanana.play("rotating")
+		$upperArmorAnimation.play("upperArmorDestroy")
+		var dir := (player_ref.global_position - self.global_position).normalized()
+		move_and_slide(dir * vel_chasing / 10)
 	
