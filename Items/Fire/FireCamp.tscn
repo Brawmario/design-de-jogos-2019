@@ -28,5 +28,5 @@ shape = SubResource( 1 )
 scale = Vector2( 2.43978, 2.43978 )
 frames = SubResource( 2 )
 animation = "FireAnimation"
-frame = 1
+frame = 3
 playing = true

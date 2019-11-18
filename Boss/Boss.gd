@@ -8,6 +8,7 @@ var player_ref: Player
 var attack_player := false
 var state:=BossState.StandStill
 var animation
+var fell_heat = true
 
 # Wait time for the trapped boos
 var time := Timer.new()
@@ -85,5 +86,19 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 		state=BossState.StandStill
 		banana.queue_free()
 		$upperArmorAnimation.play("upperArmorDestroy")
+		$rotatingAfterBanana.play("rotating")
 		yield( $upperArmorAnimation, "animation_finished" )
+		yield( $rotatingAfterBanana, "animation_finished" )
 		state=BossState.MoveRandom
+	var campfire := area as CampFire
+	if campfire:
+		if fell_heat:
+			fell_heat = false
+			state = BossState.StandStill
+			$helmetAnimation.play("loseHelmet")
+			yield( $helmetAnimation, "animation_finished")
+			state = BossState.MoveRandom
+			var helmet = load("res://Items/Helmet/Helmet.tscn").instance()
+			helmet.position = self.position
+			self.get_parent().add_child(helmet)
+

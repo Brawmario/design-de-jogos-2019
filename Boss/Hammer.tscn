@@ -3,7 +3,7 @@
 [ext_resource path="res://Boss/art/hammer.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34.7502, 43.9857 )
+extents = Vector2( 20.7182, 14.4462 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bossAttack_1"
@@ -32,10 +32,35 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 30 ), Vector2( 0, 60 ), Vector2( 0, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("damageArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6.5862, -19.1775 ), Vector2( 18.5964, 21.3083 ), Vector2( 14.0901, 75.8836 ), Vector2( 5.50457, -20.5913 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("damageArea:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Hammer" type="Area2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="damageArea" type="CollisionShape2D" parent="."]
+position = Vector2( 6.5862, -19.1775 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
