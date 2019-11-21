@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Pot.gd" type="Script" id=1]
+[ext_resource path="res://Items/Pot/EmptyPot/PikselPot.png" type="Texture" id=2]
+[ext_resource path="res://Items/Pot/PlantedPot/PikselPotPlanted.png" type="Texture" id=3]
+[ext_resource path="res://Items/Pot/PotSprout/PotSprout.png" type="Texture" id=4]
+[ext_resource path="res://Items/Pot/PotTree/PotTree.png" type="Texture" id=5]
+[ext_resource path="res://Items/Pot/PotTreeWithFruit/PotTreeBanana (1).png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 45.0
+
+[node name="Pot" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpritePot" type="Sprite" parent="."]
+position = Vector2( 0, -1.90735e-006 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -10 )
+
+[node name="SpritePlanted" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -10 )
+
+[node name="SpriteSprout" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -50 )
+
+[node name="SpriteTree" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -210 )
+
+[node name="SpriteTreeBanana" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -360 )
