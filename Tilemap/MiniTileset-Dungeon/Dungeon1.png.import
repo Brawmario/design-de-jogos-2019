@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Banana.png-d749eb8e74f43eb9ee19ebe80a739ad2.stex"
+path="res://.import/Dungeon1.png-17ba738448091e61825d3bbe596c55f7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Banana/Banana.png"
-dest_files=[ "res://.import/Banana.png-d749eb8e74f43eb9ee19ebe80a739ad2.stex" ]
+source_file="res://Tilemap/MiniTileset-Dungeon/Dungeon1.png"
+dest_files=[ "res://.import/Dungeon1.png-17ba738448091e61825d3bbe596c55f7.stex" ]
 
 [params]
 
