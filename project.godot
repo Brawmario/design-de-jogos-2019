@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://Items/Fire/FireCamp.gd"
 }, {
 "base": "Area2D",
+"class": "Firewood",
+"language": "GDScript",
+"path": "res://Firewood.gd"
+}, {
+"base": "Area2D",
 "class": "Hole",
 "language": "GDScript",
 "path": "res://Items/Hole/Hole.gd"
@@ -49,10 +54,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Leaves/Leaves.gd"
 }, {
+"base": "Area2D",
+"class": "Matchstick",
+"language": "GDScript",
+"path": "res://Items/Matchstick/Matchstick.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
+}, {
+"base": "Area2D",
+"class": "Pot",
+"language": "GDScript",
+"path": "res://Pot.gd"
+}, {
+"base": "Area2D",
+"class": "Seed",
+"language": "GDScript",
+"path": "res://Items/Seed/Seed.gd"
 } ]
 _global_script_class_icons={
 "Banana": "",
@@ -60,10 +80,14 @@ _global_script_class_icons={
 "Boss": "",
 "BossState": "",
 "CampFire": "",
+"Firewood": "",
 "Hole": "",
 "ItemEnums": "",
 "Leaves": "",
-"Player": ""
+"Matchstick": "",
+"Player": "",
+"Pot": "",
+"Seed": ""
 }
 
 [application]
