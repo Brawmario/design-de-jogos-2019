@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Firewood.gd" type="Script" id=1]
 [ext_resource path="res://Items/Fireless Place/FireWood.png" type="Texture" id=2]
-[ext_resource path="res://Items/Fire/FireWoodFire.png" type="Texture" id=3]
+[ext_resource path="res://Items/Fire/FireWoodFire1.png" type="Texture" id=3]
+[ext_resource path="res://Items/Fire/FireWoodFire2png.png" type="Texture" id=4]
+[ext_resource path="res://Items/Fire/FireWoodFire3.png" type="Texture" id=5]
+[ext_resource path="res://Items/Fire/FireWoodFire4.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 45.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "fire",
+"speed": 10.0
+} ]
 
 [node name="Firewood" type="Area2D"]
 script = ExtResource( 1 )
@@ -17,6 +28,10 @@ shape = SubResource( 1 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
-[node name="SpriteFire" type="Sprite" parent="."]
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 3 )
+[node name="SpriteFire" type="AnimatedSprite" parent="."]
+position = Vector2( -0.198607, -26.8121 )
+scale = Vector2( 3.86323, 3.86323 )
+frames = SubResource( 2 )
+animation = "fire"
+frame = 2
+playing = true
