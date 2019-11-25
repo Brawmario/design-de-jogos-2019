@@ -60,6 +60,7 @@ tracks/3/keys = {
 [node name="Hammer" type="Area2D"]
 
 [node name="damageArea" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 6.5862, -19.1775 )
 shape = SubResource( 1 )
 

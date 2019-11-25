@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CampFire-1.png.png-690b9f007a6185474b1f4b599413564b.stex"
+path="res://.import/FireWoodFire4.png-46744a68dd1a18ff61922ade5f5d2c0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Fire/CampFire-1.png.png"
-dest_files=[ "res://.import/CampFire-1.png.png-690b9f007a6185474b1f4b599413564b.stex" ]
+source_file="res://Items/Fire/FireWoodFire4.png"
+dest_files=[ "res://.import/FireWoodFire4.png-46744a68dd1a18ff61922ade5f5d2c0f.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

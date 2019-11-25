@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CampFire-1.png.png-690b9f007a6185474b1f4b599413564b.stex"
+path="res://.import/FireWoodFire3.png-1039aca70951963e65be01854cbc2f86.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Fire/CampFire-1.png.png"
-dest_files=[ "res://.import/CampFire-1.png.png-690b9f007a6185474b1f4b599413564b.stex" ]
+source_file="res://Items/Fire/FireWoodFire3.png"
+dest_files=[ "res://.import/FireWoodFire3.png-1039aca70951963e65be01854cbc2f86.stex" ]
 
 [params]
 
