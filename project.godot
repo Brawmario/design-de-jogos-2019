@@ -73,6 +73,11 @@ _global_script_classes=[ {
 "class": "Seed",
 "language": "GDScript",
 "path": "res://Items/Seed/Seed.gd"
+}, {
+"base": "Area2D",
+"class": "Sword",
+"language": "GDScript",
+"path": "res://Items/Sword/Sword.gd"
 } ]
 _global_script_class_icons={
 "Banana": "",
@@ -87,7 +92,8 @@ _global_script_class_icons={
 "Matchstick": "",
 "Player": "",
 "Pot": "",
-"Seed": ""
+"Seed": "",
+"Sword": ""
 }
 
 [application]

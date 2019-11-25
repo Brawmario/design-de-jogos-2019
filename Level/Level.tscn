@@ -54,7 +54,9 @@ position = Vector2( 1017.38, 1107.53 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1123.04, 1889.71 )
 
-[node name="Boss" parent="." instance=ExtResource( 5 )]
+[node name="Boss" parent="." groups=[
+"Boss",
+] instance=ExtResource( 5 )]
 position = Vector2( 1093.9, 1235.87 )
 rotation = 1.5708
 
@@ -78,6 +80,8 @@ position = Vector2( 1509.65, 312.341 )
 ] instance=ExtResource( 9 )]
 position = Vector2( 372.947, 594.101 )
 
-[node name="Sword" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1131.02, 1779.49 )
-scale = Vector2( 0.15, 0.15 )
+[node name="Sword" parent="." groups=[
+"Items",
+] instance=ExtResource( 10 )]
+position = Vector2( 1165.24, 1778.09 )
+[connection signal="finished_attack" from="Sword" to="Player" method="_on_Sword_finished_attack"]

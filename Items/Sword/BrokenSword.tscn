@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Items/Sword/BrokenSword.png" type="Texture" id=1]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 3.08006, -0.262619 )
+texture = ExtResource( 1 )
