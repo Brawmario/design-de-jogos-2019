@@ -5,10 +5,9 @@ var vel: float = 500.0
 var item = null
 var interact_cooldown = false
 
-onready var interact_timeout = $InteractTimeout
+#onready var interact_timeout = $InteractTimeout
 onready var inventory = null
 onready var movable = true
-onready var last_direction
 
 signal inventory_update(item)
 
@@ -23,16 +22,12 @@ func _physics_process(delta: float):
 	if(movable):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
-			last_direction = "r"
 		if Input.is_action_pressed("ui_left"):
 			velocity.x -= 1
-			last_direction = "l"
 		if Input.is_action_pressed("ui_down"):
 				velocity.y += 1
-				last_direction = "d"
 		if Input.is_action_pressed("ui_up"):
 			velocity.y -= 1
-			last_direction = "u"
 		velocity = velocity.normalized() * vel
 		move_and_slide(velocity)
 
@@ -53,10 +48,14 @@ func _physics_process(delta: float):
 		if inventory is Sword:
 			if(movable):
 				var sword = load("res://Items/Sword/Sword.tscn").instance()
+				
 				sword.position = self.position
 				self.get_parent().add_child(sword)
 				sword.attack() 
 				sword.connect("finished_attack", self, "_on_Sword_finished_attack")
+				sword.connect("hit_boss", self, "_on_Sword_hit_boss")
+				
+				
 			movable = false
 		
 		if item and item.has_method("interact"):
@@ -93,7 +92,14 @@ func _on_InteractionArea_area_exited(area):
 		
 
 
-
 func _on_Sword_finished_attack():
 	print("in signal")
 	movable = true
+
+
+func _on_Sword_hit_boss():
+	var broken_sword = load("res://Items/Sword/BrokenSword.tscn").instance() 
+	broken_sword.position = self.position
+	self.get_parent().add_child(broken_sword)
+	self.inventory = null
+	emit_signal("inventory_update", null)
