@@ -90,8 +90,8 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 		yield( $upperArmorAnimation, "animation_finished" )
 		yield( $rotatingAfterBanana, "animation_finished" )
 		state=BossState.MoveRandom
-	var campfire := area as CampFire
-	if campfire:
+	var campfire := area as Firewood
+	if campfire && campfire.is_burning:
 		if fell_heat:
 			fell_heat = false
 			state = BossState.StandStill
