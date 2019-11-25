@@ -78,6 +78,9 @@ position = Vector2( 1509.65, 312.341 )
 ] instance=ExtResource( 9 )]
 position = Vector2( 372.947, 594.101 )
 
-[node name="Sword" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1131.02, 1779.49 )
-scale = Vector2( 0.15, 0.15 )
+[node name="Sword" parent="." groups=[
+"Items",
+] instance=ExtResource( 10 )]
+position = Vector2( 1165.24, 1778.09 )
+scale = Vector2( 1, 1 )
+[connection signal="finished_attack" from="Sword" to="Player" method="_on_Sword_finished_attack"]
