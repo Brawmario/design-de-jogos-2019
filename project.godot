@@ -99,7 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Untitled Project"
-run/main_scene="res://Level/IntroLevel.tscn"
+run/main_scene="res://Level/Level.tscn"
 config/icon="res://icon.png"
 
 [input]

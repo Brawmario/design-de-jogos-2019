@@ -54,7 +54,9 @@ position = Vector2( 1017.38, 1107.53 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1123.04, 1889.71 )
 
-[node name="Boss" parent="." instance=ExtResource( 5 )]
+[node name="Boss" parent="." groups=[
+"Boss",
+] instance=ExtResource( 5 )]
 position = Vector2( 1093.9, 1235.87 )
 rotation = 1.5708
 
