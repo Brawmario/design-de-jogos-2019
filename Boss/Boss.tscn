@@ -154,3 +154,5 @@ anims/loseHelmet = SubResource( 7 )
 [connection signal="area_shape_entered" from="attackArea" to="." method="_on_attackArea_area_shape_entered"]
 [connection signal="body_entered" from="attackArea" to="." method="_on_attackArea_body_entered"]
 [connection signal="body_exited" from="attackArea" to="." method="_on_attackArea_body_exited"]
+[connection signal="area_entered" from="Hammer" to="." method="_on_Hammer_area_entered"]
+[connection signal="body_entered" from="Hammer" to="." method="_on_Hammer_body_entered"]

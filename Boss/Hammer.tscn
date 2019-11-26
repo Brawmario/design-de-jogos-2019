@@ -3,7 +3,7 @@
 [ext_resource path="res://Boss/art/hammer.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.7182, 14.4462 )
+extents = Vector2( 10, 8 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bossAttack_1"
@@ -60,8 +60,8 @@ tracks/3/keys = {
 [node name="Hammer" type="Area2D"]
 
 [node name="damageArea" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 6.5862, -19.1775 )
+rotation = 0.174533
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -10,6 +10,8 @@ var state:=BossState.StandStill
 var animation
 var fell_heat = true
 
+signal player_hit
+
 # Wait time for the trapped boos
 var time := Timer.new()
 
@@ -102,3 +104,19 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 			helmet.position = self.position
 			self.get_parent().add_child(helmet)
 
+
+
+func _on_Hammer_area_entered(area):
+	var pot := area as Pot 
+	if area.is_in_group("Tree") && pot.grown:
+		var banana = load("res://Items/Banana/Banana.tscn").instance() 
+		banana.add_to_group("Items")
+		banana.position = self.position
+		self.get_parent().add_child(banana)
+		pot.grown = false 
+
+
+func _on_Hammer_body_entered(body):
+	if Player: 
+		emit_signal("player_hit")
+		print("player hit")

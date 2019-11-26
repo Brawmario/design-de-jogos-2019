@@ -48,13 +48,11 @@ func _physics_process(delta: float):
 		if inventory is Sword:
 			if(movable):
 				var sword = load("res://Items/Sword/Sword.tscn").instance()
-				
 				sword.position = self.position
 				self.get_parent().add_child(sword)
 				sword.attack() 
 				sword.connect("finished_attack", self, "_on_Sword_finished_attack")
 				sword.connect("hit_boss", self, "_on_Sword_hit_boss")
-				
 				
 			movable = false
 		
@@ -103,3 +101,7 @@ func _on_Sword_hit_boss():
 	self.get_parent().add_child(broken_sword)
 	self.inventory = null
 	emit_signal("inventory_update", null)
+
+func _on_Boss_player_hit():
+	var start_pos = Vector2(1000, 2000)
+	self.position = start_pos
