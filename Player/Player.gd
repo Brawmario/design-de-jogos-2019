@@ -79,6 +79,7 @@ func _physics_process(delta: float):
 				ItemEnums.Wear:
 					print('Wear Item')
 					$Look.texture = load("res://Boss/art/Helmet.png")
+					$Look.set_scale(Vector2(5,5))
 					item_ref.get_parent().remove_child(item_ref)
 					armor=true
 					
