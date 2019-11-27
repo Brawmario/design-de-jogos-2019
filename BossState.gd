@@ -4,5 +4,6 @@ enum {
 	StandStill,
 	MoveRandom,
 	FollowPlayer,
+	RunAway,
 	Trapped
 }

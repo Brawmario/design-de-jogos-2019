@@ -7,6 +7,7 @@ var interact_cooldown = false
 
 #onready var interact_timeout = $InteractTimeout
 onready var inventory = null
+onready var armor = null
 onready var movable = true
 
 signal inventory_update(item)
@@ -75,23 +76,26 @@ func _physics_process(delta: float):
 				ItemEnums.Drop:
 					emit_signal("inventory_update", null)
 					print("Dropped Item")
+				ItemEnums.Wear:
+					print('Wear Item')
+					$Look.texture = load("res://Boss/art/Helmet.png")
+					item_ref.get_parent().remove_child(item_ref)
+					armor=item
+					
 
 
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("Items"):
-		print("Item in Range")
 		item = area
 
 
 func _on_InteractionArea_area_exited(area):
 	if area.is_in_group("Items"):
-		print("Item left Range")
 		item = null
 		
 
 
 func _on_Sword_finished_attack():
-	print("in signal")
 	movable = true
 
 

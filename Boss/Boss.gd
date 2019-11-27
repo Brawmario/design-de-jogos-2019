@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Boss
 
+var vel_runAway= 50*60
 var vel_chasing := 300.0 * 60 
 var vel_idle := 100 * 60
 var random_Waypoint:=Vector2(rand_range(0,2000), rand_range(0,2000))
@@ -30,9 +31,16 @@ func _physics_process(delta):
 				look_at(random_Waypoint)
 			BossState.FollowPlayer:
 				follow(delta)			
+			BossState.RunAway:
+				runAway(delta)
 	if attack_player:
 		$Hammer/bossAttack_1.play("bossAttack_1")
 
+func runAway(delta: float):
+	var dir := -1*(player_ref.global_position - self.global_position).normalized()
+	move_and_slide(dir * vel_runAway* delta)
+	look_at(player_ref.global_position)
+	
 func follow(delta: float):
 	var dir := (player_ref.global_position - self.global_position).normalized()
 	move_and_slide(dir * vel_chasing * delta)
@@ -42,8 +50,11 @@ func _on_Area2D_body_entered(body):
 	var player := body as Player
 	if not player:
 		return
-	player_ref = player
-	state=BossState.FollowPlayer
+	if has_node("Hammer"):
+		player_ref = player
+		state=BossState.FollowPlayer
+	else:
+		state=BossState.RunAway
 
 func _on_Area2D_body_exited(body):
 	var player := body as Player
@@ -55,9 +66,9 @@ func _on_attackArea_body_entered(body):
 	var player := body as Player
 	if not player:
 		return
-	player_ref = player
-	state=BossState.FollowPlayer
-	attack_player = true
+	if(state==BossState.FollowPlayer):
+		player_ref = player
+		attack_player = true
 
 func _on_attackArea_body_exited(body):
 	var player := body as Player
@@ -66,7 +77,6 @@ func _on_attackArea_body_exited(body):
 	attack_player = false
 
 func moveAgain():
-	print("called")
 	state=BossState.MoveRandom
 	
 func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
@@ -82,6 +92,8 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 			state=BossState.MoveRandom
 			return
 		else:
+			var dir := ( self.global_position- hole.global_position)
+			random_Waypoint= self.global_position + dir
 			state=BossState.MoveRandom
 	var banana := area as BananaPeel
 	if banana:
@@ -98,11 +110,13 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 			fell_heat = false
 			state = BossState.StandStill
 			$helmetAnimation.play("loseHelmet")
-			yield( $helmetAnimation, "animation_finished")
-			state = BossState.MoveRandom
-			var helmet = load("res://Items/Helmet/Helmet.tscn").instance()
+			var helmet = load("res://Items/Helmet/Helmet.tscn").instance() 
+			helmet.add_to_group("Items")
 			helmet.position = self.position
 			self.get_parent().add_child(helmet)
+			yield( $helmetAnimation, "animation_finished")
+			state = BossState.MoveRandom
+			
 
 
 
@@ -117,6 +131,17 @@ func _on_Hammer_area_entered(area):
 
 
 func _on_Hammer_body_entered(body):
-	if Player: 
+	var player := body as Player
+	if player: 
+		if player.armor:
+			print('Player has armor')
+			state = BossState.StandStill
+			$Hammer/looseHammer.play("looseHammer")
+			attack_player=false
+			state = BossState.RunAway
+			yield( $Hammer/looseHammer, "animation_finished")
+			if has_node("Hammer"):
+				remove_child(get_node("Hammer"))
+			return
 		emit_signal("player_hit")
 		print("player hit")
