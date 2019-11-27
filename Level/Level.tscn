@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Map/Map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/Leaves/Leaves.tscn" type="PackedScene" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://Items/Pot/Pot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Items/Seed/Seed.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Items/Fireless Place/Firewood.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Items/Matchstick/Matchstick.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Items/Sword/Sword.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/Sword/Sword.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1000, 10 )
@@ -76,14 +75,9 @@ position = Vector2( 193.163, 1573.92 )
 ] instance=ExtResource( 8 )]
 position = Vector2( 1565.44, 350.513 )
 
-[node name="Matchstick" parent="." groups=[
-"Items",
-] instance=ExtResource( 9 )]
-position = Vector2( 461.075, 968.443 )
-
 [node name="Sword" parent="." groups=[
 "Items",
-] instance=ExtResource( 10 )]
+] instance=ExtResource( 9 )]
 position = Vector2( 1098.55, 1738.79 )
 [connection signal="player_hit" from="Boss" to="Player" method="_on_Boss_player_hit"]
 [connection signal="finished_attack" from="Sword" to="Player" method="_on_Sword_finished_attack"]

@@ -110,3 +110,6 @@ func _on_Sword_hit_boss():
 func _on_Boss_player_hit():
 	var start_pos = Vector2(1000, 2000)
 	self.position = start_pos
+
+func win_screen():
+	self.get_node("Camera2D").get_node("TextEdit").visible = true

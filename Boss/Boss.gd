@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Boss
 
-var vel_runAway= 50*60
+var vel_runAway= 50*100
 var vel_chasing := 300.0 * 60 
 var vel_idle := 100 * 60
 var random_Waypoint:=Vector2(rand_range(0,2000), rand_range(0,2000))
@@ -10,6 +10,7 @@ var attack_player := false
 var state:=BossState.StandStill
 var animation
 var fell_heat = true
+var lost_parts = 0
 
 signal player_hit
 
@@ -91,6 +92,14 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 			$lowerArmorAnimation.play("lowerArmorAnimation")
 			yield( $lowerArmorAnimation, "animation_finished" )
 			state=BossState.MoveRandom
+			lost_parts += 1
+			print("Lost parts = ", lost_parts)
+			if(lost_parts == 2):
+				print("There should be match")
+				var matchstick = load("res://Items/Matchstick/Matchstick.tscn").instance() 
+				matchstick.add_to_group("Items")
+				matchstick.position = self.position
+				self.get_parent().add_child(matchstick)
 			return
 		else:
 			var dir := ( self.global_position- hole.global_position)
@@ -98,6 +107,13 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 			state=BossState.MoveRandom
 	var banana := area as BananaPeel
 	if banana:
+		lost_parts += 1
+		print("Lost parts = ", lost_parts)
+		if(lost_parts == 2):
+				var matchstick = load("res://Items/Matchstick/Matchstick.tscn").instance() 
+				matchstick.add_to_group("Items")
+				matchstick.position = self.position
+				self.get_parent().add_child(matchstick)
 		state=BossState.StandStill
 		banana.queue_free()
 		$upperArmorAnimation.play("upperArmorDestroy")
@@ -105,6 +121,7 @@ func _on_attackArea_area_shape_entered(area_id, area, area_shape, self_shape):
 		yield( $upperArmorAnimation, "animation_finished" )
 		yield( $rotatingAfterBanana, "animation_finished" )
 		state=BossState.MoveRandom
+		
 	var campfire := area as Firewood
 	if campfire && campfire.is_burning:
 		if fell_heat:
@@ -140,6 +157,7 @@ func _on_Hammer_body_entered(body):
 			$Hammer/looseHammer.play("looseHammer")
 			attack_player=false
 			state = BossState.RunAway
+			player.win_screen()
 			yield( $Hammer/looseHammer, "animation_finished")
 			if has_node("Hammer"):
 				remove_child(get_node("Hammer"))
