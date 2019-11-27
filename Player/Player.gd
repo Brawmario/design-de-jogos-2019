@@ -15,6 +15,7 @@ signal inventory_update(item)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.get_node("Camera2D").get_node("TextEdit").visible = false
 	pass # Replace with function body.
 
 
