@@ -7,7 +7,7 @@ var interact_cooldown = false
 
 #onready var interact_timeout = $InteractTimeout
 onready var inventory = null
-onready var armor = null
+onready var armor = false
 onready var movable = true
 
 signal inventory_update(item)
@@ -80,7 +80,8 @@ func _physics_process(delta: float):
 					print('Wear Item')
 					$Look.texture = load("res://Boss/art/Helmet.png")
 					item_ref.get_parent().remove_child(item_ref)
-					armor=item
+					armor=true
+					
 					
 
 

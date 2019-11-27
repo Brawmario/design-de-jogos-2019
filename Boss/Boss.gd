@@ -53,6 +53,7 @@ func _on_Area2D_body_entered(body):
 	if has_node("Hammer"):
 		player_ref = player
 		state=BossState.FollowPlayer
+		_on_attackArea_body_entered(body)
 	else:
 		state=BossState.RunAway
 
