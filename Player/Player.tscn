@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player.png" type="Texture" id=2]
 [ext_resource path="res://Player/UI.gd" type="Script" id=3]
 [ext_resource path="res://Player/window_blue.png" type="Texture" id=4]
+[ext_resource path="res://Player/Exclamation.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 20 )
@@ -55,6 +56,12 @@ script = ExtResource( 3 )
 margin_right = 100.0
 margin_bottom = 100.0
 texture = ExtResource( 4 )
+
+[node name="Exclamation" type="Sprite" parent="UI"]
+visible = false
+position = Vector2( 144.006, 52.9552 )
+scale = Vector2( 2.30024, 2.92503 )
+texture = ExtResource( 5 )
 [connection signal="inventory_update" from="." to="UI" method="_on_Player_inventory_update"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_exited"]

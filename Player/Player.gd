@@ -89,12 +89,13 @@ func _physics_process(delta: float):
 func _on_InteractionArea_area_entered(area):
 	if area.is_in_group("Items"):
 		item = area
+		$UI/Exclamation.visible = true
 
 
 func _on_InteractionArea_area_exited(area):
 	if area.is_in_group("Items"):
 		item = null
-		
+		$UI/Exclamation.visible = false
 
 
 func _on_Sword_finished_attack():
