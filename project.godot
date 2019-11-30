@@ -98,7 +98,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Untitled Project"
+config/name="AP"
 run/main_scene="res://Level/Level.tscn"
 config/icon="res://icon.png"
 
